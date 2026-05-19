@@ -1,0 +1,7 @@
+Scaffold-DbContext "Data Source=.\SQLEXPRESS;Initial Catalog=SalesManagementDB;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -Context SalesMgrContext -ContextDir Context -OutputDir Models -DataAnnotations -Force -ErrorAction Continue
+
+dotnet tool install --global dotnet-ef
+
+dotnet ef dbcontext scaffold "Server=DESKTOP-VTIDNVJ\\SQLEXPRESS;Database=AdventureWorksDb;User Id=sa;Password=123456;Trusted_Connection=True;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -o Models --context-dir Context -c AdventureWorksContext -d -f
+
+Data Source=.\SQLEXPRESS;Initial Catalog=SalesManagementDB;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;

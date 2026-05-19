@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="SalesMgrSystem.Data/SalesMgrSystem.Data.csproj" Id="295533cd-6425-4480-960a-89f59d0039c8" />
+  <Project Path="SalesMgrSystem.Tests/SalesMgrSystem.Tests.csproj" Id="791d63aa-c3a2-494e-a83f-e58e4bc3cd0a" />
+  <Project Path="SalesMgrSystem.UI/SalesMgrSystem.UI.csproj" Id="f5797a6e-0f65-4395-96eb-91cc68d86477" />
+</Solution>
