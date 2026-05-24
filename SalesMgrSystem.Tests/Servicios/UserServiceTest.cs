@@ -1,183 +1,10 @@
-﻿using SalesMgrSystem.Data.Models;
+using SalesMgrSystem.Data.Models;
 using SalesMgrSystem.Tests.Infrastructure;
-using SalesMgrSystem.UI.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using SalesMgrSystem.Data.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace SalesMgrSystem.Tests.Servicios;
-/*
- public class ProductorServiceTest
-    {
-        [Fact]
-        public async Task Buscar_CuandoExisteProductor_RetornaEntidad()
-        {
-            // Arrange
-            var dbName = TestDbContextFactory.NewDataBaseName();
-            await using (var seedContext = TestDbContextFactory.CreateContext(dbName))
-            {
-                seedContext.Productors.Add(CreateProductor(id: 1, codigo: "P001", nombre: "Juan", apellido: "Pérez"));
-                await seedContext.SaveChangesAsync();
-            }
 
-            await using var context = TestDbContextFactory.CreateContext(dbName);
-            var service = new ProductorService(context);
-
-            // Act
-            var result = await service.Buscar(1);
-
-            // Assert
-            Assert.NotNull(result);
-            Assert.Equal(1, result!.ProductorId);
-            Assert.Equal("P001", result.Codigo);
-            Assert.Equal("Juan", result.Nombre);
-            Assert.Equal("Pérez", result.Apellido);
-            Assert.Empty(context.ChangeTracker.Entries());
-        }
-
-        [Fact]
-        public async Task Buscar_CuandoNoExisteProductor_RetornaNull()
-        {
-            // Arrange
-            await using var context = TestDbContextFactory.CreateContext(
-                TestDbContextFactory.NewDataBaseName());
-            var service = new ProductorService(context);
-
-            // Act
-            var result = await service.Buscar(99);
-
-            // Assert
-            Assert.Null(result);
-        }
-
-        [Fact]
-        public async Task GetList_CuandoSeFiltraPorApellido_RetornaCoincidencias()
-        {
-            // Arrange
-            var dbName = TestDbContextFactory.NewDataBaseName();
-            await using (var seedContext = TestDbContextFactory.CreateContext(dbName))
-            {
-                seedContext.Productors.AddRange(
-                    CreateProductor(id: 1, codigo: "P001", nombre: "Juan", apellido: "López"),
-                    CreateProductor(id: 2, codigo: "P002", nombre: "María", apellido: "López"),
-                    CreateProductor(id: 3, codigo: "P003", nombre: "Carlos", apellido: "García")
-                );
-                await seedContext.SaveChangesAsync();
-            }
-
-            await using var context = TestDbContextFactory.CreateContext(dbName);
-            var service = new ProductorService(context);
-
-            // Act
-            var result = await service.GetList(p => p.Apellido.ToLower().Contains("lópez"));
-
-            // Assert
-            Assert.Equal(2, result.Count);
-            Assert.Contains(result, p => p.ProductorId == 1);
-            Assert.Contains(result, p => p.ProductorId == 2);
-        }
-
-        [Fact]
-        public async Task Guardar_CuandoProductorNoExiste_InsertaYRetornaTrue()
-        {
-            // Arrange
-            await using var context = TestDbContextFactory.CreateContext(
-                TestDbContextFactory.NewDataBaseName());
-            var service = new ProductorService(context);
-            var nuevoProductor = CreateProductor(id: 10, codigo: "P010", nombre: "Ana", apellido: "Martínez");
-
-            // Act
-            var result = await service.Guardar(nuevoProductor);
-
-            // Assert
-            Assert.True(result);
-            var saved = await context.Productors.FirstOrDefaultAsync(p => p.ProductorId == 10);
-            Assert.NotNull(saved);
-            Assert.Equal("Ana", saved!.Nombre);
-            Assert.Equal("Martínez", saved.Apellido);
-        }
-
-        [Fact]
-        public async Task Guardar_CuandoProductorExiste_ModificaYRetornaTrue()
-        {
-            // Arrange
-            var dbName = TestDbContextFactory.NewDataBaseName();
-            await using (var seedContext = TestDbContextFactory.CreateContext(dbName))
-            {
-                seedContext.Productors.Add(CreateProductor(id: 20, codigo: "P020", nombre: "Luis", apellido: "Ramírez"));
-                await seedContext.SaveChangesAsync();
-            }
-
-            await using var context = TestDbContextFactory.CreateContext(dbName);
-            var service = new ProductorService(context);
-            var actualizado = CreateProductor(id: 20, codigo: "P020", nombre: "Luis", apellido: "Ramírez Modificado");
-
-            // Act
-            var result = await service.Guardar(actualizado);
-
-            // Assert
-            Assert.True(result);
-            var saved = await context.Productors.FirstOrDefaultAsync(p => p.ProductorId == 20);
-            Assert.NotNull(saved);
-            Assert.Equal("Ramírez Modificado", saved!.Apellido);
-        }
-
-        [Fact]
-        public async Task Existe_CuandoProductorExiste_RetornaTrue()
-        {
-            // Arrange
-            var dbName = TestDbContextFactory.NewDataBaseName();
-            await using (var seedContext = TestDbContextFactory.CreateContext(dbName))
-            {
-                seedContext.Productors.Add(CreateProductor(id: 5, codigo: "P005", nombre: "Elena", apellido: "Torres"));
-                await seedContext.SaveChangesAsync();
-            }
-
-            await using var context = TestDbContextFactory.CreateContext(dbName);
-            var service = new ProductorService(context);
-
-            // Act
-            var result = await service.Existe(5);
-
-            // Assert
-            Assert.True(result);
-        }
-
-        [Fact]
-        public async Task Eliminar_CuandoExisteProductor_LoBorraYRetornaTrue()
-        {
-            // Arrange
-            var dbName = TestDbContextFactory.NewDataBaseName();
-            await using (var seedContext = TestDbContextFactory.CreateContext(dbName))
-            {
-                seedContext.Productors.Add(CreateProductor(id: 30, codigo: "P030", nombre: "Pedro", apellido: "Sánchez"));
-                await seedContext.SaveChangesAsync();
-            }
-
-            await using var context = TestDbContextFactory.CreateContext(dbName);
-            var service = new ProductorService(context);
-
-            // Act
-            var result = await service.Eliminar(30);
-
-            // Assert
-            Assert.True(result);
-            var eliminado = await context.Productors.FindAsync(30);
-            Assert.Null(eliminado);
-        }
-
-        private static Productor CreateProductor(int id, string codigo, string nombre, string apellido)
-        {
-            return new Productor
-            {
-                ProductorId = id,
-                Codigo = codigo,
-                Nombre = nombre,
-                Apellido = apellido
-            };
-        }
-    }
- */
 public class UserServiceTest
 {
     [Fact]
@@ -185,17 +12,16 @@ public class UserServiceTest
     {
         // Arrange
         var dbName = TestDbContextFactory.NewDatabaseName();
-        var user = new User()
-        {
-            UserId = 1,
-            Username = "user1",
-            PasswordHash = "password1",
-            FullName = "User One",
-            Email = "enel@sagrd.com"
-        };
         await using (var seedContext = TestDbContextFactory.CreateContext(dbName))
         {
-            seedContext.Users.Add(user);
+            seedContext.Users.Add(new User()
+            {
+                UserId = 1,
+                Username = "user1",
+                PasswordHash = "password1",
+                FullName = "User One",
+                Email = "user1@mail.com"
+            });
             await seedContext.SaveChangesAsync();
         }
 
@@ -210,5 +36,169 @@ public class UserServiceTest
         Assert.Equal("user1", result!.Username);
     }
 
-     
+    [Fact]
+    public async Task Buscar_CuandoNoExisteUsuario_RetornaNull()
+    {
+        // Arrange
+        await using var context = TestDbContextFactory.CreateContext(
+            TestDbContextFactory.NewDatabaseName());
+        var service = new UserService(context);
+
+        // Act
+        var result = await service.Buscar(999);
+
+        // Assert
+        Assert.Null(result);
+    }
+
+    [Fact]
+    public async Task Guardar_CuandoUsuarioNoExiste_InsertaYRetornaTrue()
+    {
+        // Arrange
+        await using var context = TestDbContextFactory.CreateContext(
+            TestDbContextFactory.NewDatabaseName());
+        var service = new UserService(context);
+
+        var user = new User()
+        {
+            UserId = 2,
+            Username = "user2",
+            PasswordHash = "pass2",
+            FullName = "User Two",
+            Email = "user2@mail.com"
+        };
+
+        // Act
+        var result = await service.Guardar(user);
+
+        // Assert
+        Assert.True(result);
+        var saved = await context.Users.FirstOrDefaultAsync(u => u.UserId == 2);
+        Assert.NotNull(saved);
+        Assert.Equal("user2", saved!.Username);
+    }
+
+    [Fact]
+    public async Task Guardar_CuandoUsuarioExiste_ModificaYRetornaTrue()
+    {
+        // Arrange
+        var dbName = TestDbContextFactory.NewDatabaseName();
+        await using (var seedContext = TestDbContextFactory.CreateContext(dbName))
+        {
+            seedContext.Users.Add(new User()
+            {
+                UserId = 3,
+                Username = "user3",
+                PasswordHash = "pass3",
+                FullName = "User Three",
+                Email = "user3@mail.com"
+            });
+            await seedContext.SaveChangesAsync();
+        }
+
+        await using var context = TestDbContextFactory.CreateContext(dbName);
+        var service = new UserService(context);
+
+        var actualizado = new User()
+        {
+            UserId = 3,
+            Username = "user3_modificado",
+            PasswordHash = "pass3",
+            FullName = "User Three Modified",
+            Email = "user3mod@mail.com"
+        };
+
+        // Act
+        var result = await service.Guardar(actualizado);
+
+        // Assert
+        Assert.True(result);
+        var saved = await context.Users.FirstOrDefaultAsync(u => u.UserId == 3);
+        Assert.NotNull(saved);
+        Assert.Equal("user3_modificado", saved!.Username);
+    }
+
+    [Fact]
+    public async Task Eliminar_CuandoExisteUsuario_LoBorraYRetornaTrue()
+    {
+        // Arrange
+        var dbName = TestDbContextFactory.NewDatabaseName();
+        await using (var seedContext = TestDbContextFactory.CreateContext(dbName))
+        {
+            seedContext.Users.Add(new User()
+            {
+                UserId = 4,
+                Username = "user4",
+                PasswordHash = "pass4",
+                FullName = "User Four",
+                Email = "user4@mail.com"
+            });
+            await seedContext.SaveChangesAsync();
+        }
+
+        await using var context = TestDbContextFactory.CreateContext(dbName);
+        var service = new UserService(context);
+
+        // Act
+        var result = await service.Eliminar(4);
+
+        // Assert
+        Assert.True(result);
+        var deleted = await context.Users.FindAsync(4);
+        Assert.Null(deleted);
+    }
+
+    [Fact]
+    public async Task Eliminar_CuandoNoExisteUsuario_RetornaFalse()
+    {
+        // Arrange
+        await using var context = TestDbContextFactory.CreateContext(
+            TestDbContextFactory.NewDatabaseName());
+        var service = new UserService(context);
+
+        // Act
+        var result = await service.Eliminar(999);
+
+        // Assert
+        Assert.False(result);
+    }
+
+    [Fact]
+    public async Task GetList_CuandoHayUsuarios_RetornaLista()
+    {
+        // Arrange
+        var dbName = TestDbContextFactory.NewDatabaseName();
+        await using (var seedContext = TestDbContextFactory.CreateContext(dbName))
+        {
+            seedContext.Users.AddRange(
+                new User()
+                {
+                    UserId = 5,
+                    Username = "admin1",
+                    PasswordHash = "pass5",
+                    FullName = "Admin One",
+                    Email = "admin1@mail.com",
+                    Role = "Admin"
+                },
+                new User()
+                {
+                    UserId = 6,
+                    Username = "admin2",
+                    PasswordHash = "pass6",
+                    FullName = "Admin Two",
+                    Email = "admin2@mail.com",
+                    Role = "Admin"
+                });
+            await seedContext.SaveChangesAsync();
+        }
+
+        await using var context = TestDbContextFactory.CreateContext(dbName);
+        var service = new UserService(context);
+
+        // Act
+        var result = await service.GetList(u => u.Role == "Admin");
+
+        // Assert
+        Assert.Equal(2, result.Count);
+    }
 }

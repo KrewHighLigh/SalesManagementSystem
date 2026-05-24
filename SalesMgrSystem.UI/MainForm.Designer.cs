@@ -32,11 +32,13 @@
             button2 = new Button();
             button3 = new Button();
             button4 = new Button();
+            button5 = new Button();
+            button6 = new Button();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(49, 34);
+            button1.Location = new Point(128, 227);
             button1.Name = "button1";
             button1.Size = new Size(172, 143);
             button1.TabIndex = 0;
@@ -45,7 +47,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(287, 34);
+            button2.Location = new Point(692, 227);
             button2.Name = "button2";
             button2.Size = new Size(172, 143);
             button2.TabIndex = 1;
@@ -54,7 +56,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(49, 208);
+            button3.Location = new Point(128, 547);
             button3.Name = "button3";
             button3.Size = new Size(172, 143);
             button3.TabIndex = 0;
@@ -63,18 +65,38 @@
             // 
             // button4
             // 
-            button4.Location = new Point(287, 208);
+            button4.Location = new Point(1244, 227);
             button4.Name = "button4";
             button4.Size = new Size(172, 143);
             button4.TabIndex = 1;
             button4.Text = "button2";
             button4.UseVisualStyleBackColor = true;
             // 
+            // button5
+            // 
+            button5.Location = new Point(692, 547);
+            button5.Name = "button5";
+            button5.Size = new Size(172, 143);
+            button5.TabIndex = 2;
+            button5.Text = "button5";
+            button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            button6.Location = new Point(1244, 547);
+            button6.Name = "button6";
+            button6.Size = new Size(172, 143);
+            button6.TabIndex = 3;
+            button6.Text = "button6";
+            button6.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1555, 836);
+            Controls.Add(button6);
+            Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(button2);
             Controls.Add(button3);
@@ -90,5 +112,7 @@
         private Button button2;
         private Button button3;
         private Button button4;
+        private Button button5;
+        private Button button6;
     }
 }
