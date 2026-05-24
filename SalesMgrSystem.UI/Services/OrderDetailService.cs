@@ -7,9 +7,9 @@ using System.Linq.Expressions;
 namespace SalesMgrSystem.UI.Services;
 
 public class OrderDetailService(SalesMgrContext context)
-    : IService<OrderDetail, int>
+    : IService<OrderDetailForm, int>
 {
-    public async Task<OrderDetail?> Buscar(int id)
+    public async Task<OrderDetailForm?> Buscar(int id)
     {
         return await context.OrderDetails
             .AsNoTracking()
@@ -30,8 +30,8 @@ public class OrderDetailService(SalesMgrContext context)
         return await context.SaveChangesAsync() > 0;
     }
 
-    public async Task<List<OrderDetail>> GetList(
-        Expression<Func<OrderDetail, bool>> criterio)
+    public async Task<List<OrderDetailForm>> GetList(
+        Expression<Func<OrderDetailForm, bool>> criterio)
     {
         return await context.OrderDetails
             .AsNoTracking()
@@ -39,7 +39,7 @@ public class OrderDetailService(SalesMgrContext context)
             .ToListAsync();
     }
 
-    public async Task<bool> Guardar(OrderDetail entidad)
+    public async Task<bool> Guardar(OrderDetailForm entidad)
     {
         if (!await Existe(entidad.OrderDetailId))
             return await Insertar(entidad);
@@ -47,7 +47,7 @@ public class OrderDetailService(SalesMgrContext context)
             return await Modificar(entidad);
     }
 
-    private async Task<bool> Insertar(OrderDetail entidad)
+    private async Task<bool> Insertar(OrderDetailForm entidad)
     {
         context.OrderDetails.Add(entidad);
 
@@ -60,15 +60,15 @@ public class OrderDetailService(SalesMgrContext context)
             .AnyAsync(o => o.OrderDetailId == id);
     }
 
-    public async Task<bool> Modificar(OrderDetail entidad)
+    public async Task<bool> Modificar(OrderDetailForm entidad)
     {
         context.OrderDetails.Update(entidad);
 
         return await context.SaveChangesAsync() > 0;
     }
 
-    public async Task<List<OrderDetail>> GetListConRelaciones(
-        Expression<Func<OrderDetail, bool>> criterio)
+    public async Task<List<OrderDetailForm>> GetListConRelaciones(
+        Expression<Func<OrderDetailForm, bool>> criterio)
     {
         return await context.OrderDetails
             .AsNoTracking()
