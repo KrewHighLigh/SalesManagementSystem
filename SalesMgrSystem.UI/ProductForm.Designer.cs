@@ -1,96 +1,273 @@
-namespace SalesMgrSystem.UI
+﻿namespace SalesMgrSystem.Ui.Forms;
+
+partial class ProductForm
 {
-    partial class ProductForm
+    private System.ComponentModel.IContainer components = null;
+
+    protected override void Dispose(bool disposing)
     {
-        private System.ComponentModel.IContainer components = null;
-        protected override void Dispose(bool disposing) { if (disposing && components != null) components.Dispose(); base.Dispose(disposing); }
-
-        private void InitializeComponent()
-        {
-            pnlHeader=new Panel(); lblHeader=new Label();
-            pnlLeft=new Panel(); lblTituloForm=new Label();
-            lblNombre=new Label(); txtNombre=new TextBox();
-            lblCategoria=new Label(); cmbCategoria=new ComboBox();
-            lblPrecio=new Label(); txtPrecio=new TextBox();
-            lblStock=new Label(); txtStock=new TextBox();
-            lblDescripcion=new Label(); txtDescripcion=new TextBox();
-            chkActivo=new CheckBox();
-            btnNuevo=new Button(); btnGuardar=new Button(); btnEliminar=new Button();
-            lblEstado=new Label(); progressBar=new ProgressBar();
-            pnlRight=new Panel(); pnlBuscar=new Panel();
-            txtBuscar=new TextBox(); btnBuscar=new Button();
-            dgv=new DataGridView();
-
-            pnlHeader.SuspendLayout(); pnlLeft.SuspendLayout(); pnlRight.SuspendLayout(); pnlBuscar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgv).BeginInit();
-            SuspendLayout();
-
-            Name="ProductForm"; Text="Gestión de Productos"; ClientSize=new Size(1050,660); StartPosition=FormStartPosition.CenterScreen;
-            Font=new Font("Segoe UI",9.5f); BackColor=Color.FromArgb(24,24,37); ForeColor=Color.FromArgb(205,214,244);
-
-            pnlHeader.Dock=DockStyle.Top; pnlHeader.Height=58; pnlHeader.BackColor=Color.FromArgb(30,30,46); pnlHeader.Padding=new Padding(20,0,0,0);
-            lblHeader.AutoSize=false; lblHeader.Dock=DockStyle.Fill; lblHeader.TextAlign=ContentAlignment.MiddleLeft;
-            lblHeader.Text="📦  Gestión de Productos  —  SalesMgrSystem"; lblHeader.Font=new Font("Segoe UI",13f,FontStyle.Bold); lblHeader.ForeColor=Color.FromArgb(137,180,250);
-            pnlHeader.Controls.Add(lblHeader);
-
-            pnlLeft.Dock=DockStyle.Left; pnlLeft.Width=340; pnlLeft.BackColor=Color.FromArgb(30,30,46);
-
-            void Lbl(Label l,string t,int y){l.Location=new Point(24,y);l.Size=new Size(292,18);l.Text=t;l.Font=new Font("Segoe UI",9f,FontStyle.Bold);l.ForeColor=Color.FromArgb(166,173,200);}
-            void Txt(TextBox t,int y){t.Location=new Point(24,y);t.Size=new Size(292,28);t.BackColor=Color.FromArgb(49,50,68);t.ForeColor=Color.FromArgb(205,214,244);t.BorderStyle=BorderStyle.FixedSingle;t.Font=new Font("Segoe UI",10f);}
-
-            lblTituloForm.Location=new Point(24,18); lblTituloForm.Size=new Size(292,26); lblTituloForm.Text="＋  Nuevo Producto"; lblTituloForm.Font=new Font("Segoe UI",11f,FontStyle.Bold); lblTituloForm.ForeColor=Color.FromArgb(137,180,250);
-            Lbl(lblNombre,"Nombre *",54); Txt(txtNombre,74);
-            Lbl(lblCategoria,"Categoría",114);
-            cmbCategoria.Location=new Point(24,134); cmbCategoria.Size=new Size(292,28); cmbCategoria.BackColor=Color.FromArgb(49,50,68); cmbCategoria.ForeColor=Color.FromArgb(205,214,244); cmbCategoria.FlatStyle=FlatStyle.Flat; cmbCategoria.Font=new Font("Segoe UI",10f); cmbCategoria.DropDownStyle=ComboBoxStyle.DropDownList;
-            Lbl(lblPrecio,"Precio *",174); Txt(txtPrecio,194);
-            Lbl(lblStock,"Stock *",234); Txt(txtStock,254);
-            Lbl(lblDescripcion,"Descripción",294);
-            txtDescripcion.Location=new Point(24,314); txtDescripcion.Size=new Size(292,70); txtDescripcion.Multiline=true; txtDescripcion.BackColor=Color.FromArgb(49,50,68); txtDescripcion.ForeColor=Color.FromArgb(205,214,244); txtDescripcion.BorderStyle=BorderStyle.FixedSingle; txtDescripcion.Font=new Font("Segoe UI",9.5f);
-            chkActivo.Location=new Point(24,396); chkActivo.Size=new Size(120,24); chkActivo.Text="Activo"; chkActivo.Checked=true; chkActivo.ForeColor=Color.FromArgb(205,214,244); chkActivo.Font=new Font("Segoe UI",9.5f);
-
-            void Btn(Button b,string t,int x,Color bg,Color fg){b.Location=new Point(x,430);b.Size=new Size(82,36);b.Text=t;b.Font=new Font("Segoe UI",9f,FontStyle.Bold);b.BackColor=bg;b.ForeColor=fg;b.FlatStyle=FlatStyle.Flat;b.FlatAppearance.BorderSize=0;b.Cursor=Cursors.Hand;}
-            Btn(btnNuevo,"🗋  Nuevo",24,Color.FromArgb(49,50,68),Color.FromArgb(205,214,244)); btnNuevo.FlatAppearance.BorderColor=Color.FromArgb(88,91,112); btnNuevo.FlatAppearance.BorderSize=1;
-            Btn(btnGuardar,"💾  Guardar",116,Color.FromArgb(137,180,250),Color.FromArgb(30,30,46));
-            Btn(btnEliminar,"🗑  Borrar",208,Color.FromArgb(243,139,168),Color.FromArgb(30,30,46)); btnEliminar.Enabled=false;
-
-            lblEstado.Location=new Point(24,478); lblEstado.Size=new Size(292,50); lblEstado.Text="Listo."; lblEstado.Font=new Font("Segoe UI",8.5f); lblEstado.ForeColor=Color.FromArgb(127,132,156);
-            progressBar.Location=new Point(24,534); progressBar.Size=new Size(292,6); progressBar.Style=ProgressBarStyle.Marquee; progressBar.MarqueeAnimationSpeed=30; progressBar.Visible=false;
-
-            btnNuevo.Click+=btnNuevo_Click; btnGuardar.Click+=btnGuardar_Click; btnEliminar.Click+=btnEliminar_Click;
-            pnlLeft.Controls.AddRange(new Control[]{lblTituloForm,lblNombre,txtNombre,lblCategoria,cmbCategoria,lblPrecio,txtPrecio,lblStock,txtStock,lblDescripcion,txtDescripcion,chkActivo,btnNuevo,btnGuardar,btnEliminar,lblEstado,progressBar});
-
-            pnlRight.Dock=DockStyle.Fill; pnlRight.BackColor=Color.FromArgb(24,24,37);
-            pnlBuscar.Location=new Point(16,16); pnlBuscar.Size=new Size(668,38); pnlBuscar.BackColor=Color.FromArgb(49,50,68); pnlBuscar.Anchor=AnchorStyles.Top|AnchorStyles.Left|AnchorStyles.Right;
-            txtBuscar.Location=new Point(12,7); txtBuscar.Size=new Size(536,24); txtBuscar.BackColor=Color.FromArgb(49,50,68); txtBuscar.ForeColor=Color.FromArgb(205,214,244); txtBuscar.BorderStyle=BorderStyle.None; txtBuscar.Font=new Font("Segoe UI",10f); txtBuscar.PlaceholderText="🔍  Buscar por nombre o descripción..."; txtBuscar.KeyDown+=txtBuscar_KeyDown;
-            btnBuscar.Location=new Point(564,4); btnBuscar.Size=new Size(94,30); btnBuscar.Text="Buscar"; btnBuscar.Font=new Font("Segoe UI",9f,FontStyle.Bold); btnBuscar.BackColor=Color.FromArgb(137,180,250); btnBuscar.ForeColor=Color.FromArgb(30,30,46); btnBuscar.FlatStyle=FlatStyle.Flat; btnBuscar.FlatAppearance.BorderSize=0; btnBuscar.Cursor=Cursors.Hand; btnBuscar.Click+=btnBuscar_Click;
-            pnlBuscar.Controls.Add(txtBuscar); pnlBuscar.Controls.Add(btnBuscar);
-
-            dgv.Location=new Point(16,66); dgv.Size=new Size(668,560); dgv.Anchor=AnchorStyles.Top|AnchorStyles.Left|AnchorStyles.Right|AnchorStyles.Bottom;
-            dgv.AutoGenerateColumns=true; dgv.SelectionMode=DataGridViewSelectionMode.FullRowSelect; dgv.MultiSelect=false; dgv.ReadOnly=true; dgv.AllowUserToAddRows=false; dgv.RowHeadersVisible=false;
-            dgv.BackgroundColor=Color.FromArgb(30,30,46); dgv.GridColor=Color.FromArgb(60,60,85); dgv.BorderStyle=BorderStyle.None; dgv.ColumnHeadersHeight=38; dgv.RowTemplate.Height=32;
-            dgv.ColumnHeadersDefaultCellStyle.BackColor=Color.FromArgb(49,50,68); dgv.ColumnHeadersDefaultCellStyle.ForeColor=Color.FromArgb(137,180,250); dgv.ColumnHeadersDefaultCellStyle.Font=new Font("Segoe UI",9.5f,FontStyle.Bold);
-            dgv.DefaultCellStyle.BackColor=Color.FromArgb(30,30,46); dgv.DefaultCellStyle.ForeColor=Color.FromArgb(205,214,244); dgv.DefaultCellStyle.SelectionBackColor=Color.FromArgb(137,180,250); dgv.DefaultCellStyle.SelectionForeColor=Color.FromArgb(30,30,46); dgv.DefaultCellStyle.Font=new Font("Segoe UI",9f);
-            dgv.AlternatingRowsDefaultCellStyle.BackColor=Color.FromArgb(36,36,54); dgv.SelectionChanged+=dgv_SelectionChanged;
-            pnlRight.Controls.Add(pnlBuscar); pnlRight.Controls.Add(dgv);
-
-            Controls.Add(pnlRight); Controls.Add(pnlLeft); Controls.Add(pnlHeader);
-            pnlHeader.ResumeLayout(false); pnlLeft.ResumeLayout(false); pnlRight.ResumeLayout(false); pnlBuscar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgv).EndInit();
-            ResumeLayout(false);
-        }
-
-        private Panel pnlHeader; private Label lblHeader;
-        private Panel pnlLeft; private Label lblTituloForm;
-        private Label lblNombre; private TextBox txtNombre;
-        private Label lblCategoria; private ComboBox cmbCategoria;
-        private Label lblPrecio; private TextBox txtPrecio;
-        private Label lblStock; private TextBox txtStock;
-        private Label lblDescripcion; private TextBox txtDescripcion;
-        private CheckBox chkActivo;
-        private Button btnNuevo, btnGuardar, btnEliminar;
-        private Label lblEstado; private ProgressBar progressBar;
-        private Panel pnlRight, pnlBuscar;
-        private TextBox txtBuscar; private Button btnBuscar;
-        private DataGridView dgv;
+        if (disposing && components != null) components.Dispose();
+        base.Dispose(disposing);
     }
+
+    #region Windows Form Designer generated code
+
+    private void InitializeComponent()
+    {
+        pnlSuperior = new Panel();
+        lblTitulo = new Label();
+        pnlBusqueda = new Panel();
+        lblBuscar = new Label();
+        txtBuscar = new TextBox();
+        dgvProductos = new DataGridView();
+        pnlFormulario = new Panel();
+        grpDatos = new GroupBox();
+        lblModo = new Label();
+        lblNombre = new Label();
+        txtNombre = new TextBox();
+        lblPrecio = new Label();
+        txtPrecio = new TextBox();
+        lblStock = new Label();
+        txtStock = new TextBox();
+        lblDescripcion = new Label();
+        txtDescripcion = new TextBox();
+        lblCategoria = new Label();
+        cmbCategoria = new ComboBox();
+        chkActivo = new CheckBox();
+        pnlBotones = new Panel();
+        btnNuevo = new Button();
+        btnGuardar = new Button();
+        btnEliminar = new Button();
+        btnCancelar = new Button();
+
+        // ── frmProductos ──────────────────────────────────────────────────────
+        SuspendLayout();
+        AutoScaleDimensions = new SizeF(8F, 20F);
+        AutoScaleMode = AutoScaleMode.Font;
+        ClientSize = new Size(1020, 660);
+        Font = new Font("Segoe UI", 10F);
+        MinimumSize = new Size(900, 600);
+        StartPosition = FormStartPosition.CenterScreen;
+        Text = "Gestión de Productos";
+        Load += frmProductos_Load;
+
+        // ── Panel superior ────────────────────────────────────────────────────
+        pnlSuperior.BackColor = Color.FromArgb(30, 115, 190);
+        pnlSuperior.Dock = DockStyle.Top;
+        pnlSuperior.Height = 56;
+
+        lblTitulo.AutoSize = false;
+        lblTitulo.Dock = DockStyle.Fill;
+        lblTitulo.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+        lblTitulo.ForeColor = Color.White;
+        lblTitulo.Text = "📦  Gestión de Productos";
+        lblTitulo.TextAlign = ContentAlignment.MiddleLeft;
+        lblTitulo.Padding = new Padding(14, 0, 0, 0);
+        pnlSuperior.Controls.Add(lblTitulo);
+
+        // ── Panel búsqueda ────────────────────────────────────────────────────
+        pnlBusqueda.Dock = DockStyle.Top;
+        pnlBusqueda.Height = 48;
+        pnlBusqueda.Padding = new Padding(10, 8, 10, 4);
+        pnlBusqueda.BackColor = Color.FromArgb(240, 245, 255);
+
+        lblBuscar.AutoSize = true;
+        lblBuscar.Location = new Point(10, 13);
+        lblBuscar.Text = "Buscar:";
+
+        txtBuscar.Location = new Point(72, 9);
+        txtBuscar.Size = new Size(300, 28);
+        txtBuscar.PlaceholderText = "Nombre del producto…";
+        txtBuscar.TextChanged += txtBuscar_TextChanged;
+
+        pnlBusqueda.Controls.AddRange(new Control[] { lblBuscar, txtBuscar });
+
+        // ── DataGridView ──────────────────────────────────────────────────────
+        dgvProductos.AllowUserToAddRows = false;
+        dgvProductos.AllowUserToDeleteRows = false;
+        dgvProductos.AutoGenerateColumns = false;
+        dgvProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        dgvProductos.BackgroundColor = Color.White;
+        dgvProductos.BorderStyle = BorderStyle.None;
+        dgvProductos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+        dgvProductos.ColumnHeadersHeightSizeMode =
+            DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        dgvProductos.ColumnHeadersDefaultCellStyle.BackColor =
+            Color.FromArgb(220, 235, 255);
+        dgvProductos.ColumnHeadersDefaultCellStyle.Font =
+            new Font("Segoe UI", 9.5F, FontStyle.Bold);
+        dgvProductos.AlternatingRowsDefaultCellStyle.BackColor =
+            Color.FromArgb(245, 248, 255);
+        dgvProductos.Dock = DockStyle.Fill;
+        dgvProductos.GridColor = Color.FromArgb(210, 220, 235);
+        dgvProductos.MultiSelect = false;
+        dgvProductos.ReadOnly = true;
+        dgvProductos.RowHeadersVisible = false;
+        dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        dgvProductos.SelectionChanged += dgvProductos_SelectionChanged;
+
+        // ── Panel formulario (lado derecho) ───────────────────────────────────
+        pnlFormulario.Dock = DockStyle.Right;
+        pnlFormulario.Width = 310;
+        pnlFormulario.Padding = new Padding(10, 8, 10, 8);
+        pnlFormulario.BackColor = Color.FromArgb(248, 250, 255);
+
+        // lblModo
+        lblModo.AutoSize = false;
+        lblModo.Dock = DockStyle.Top;
+        lblModo.Height = 28;
+        lblModo.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
+        lblModo.ForeColor = Color.FromArgb(30, 115, 190);
+        lblModo.Text = "➕  Nuevo producto";
+        lblModo.TextAlign = ContentAlignment.MiddleLeft;
+
+        // GroupBox datos
+        grpDatos.Dock = DockStyle.Top;
+        grpDatos.Height = 360;
+        grpDatos.Text = "Datos del Producto";
+        grpDatos.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+        grpDatos.Padding = new Padding(10, 14, 10, 6);
+
+        // — Nombre —
+        lblNombre.AutoSize = true;
+        lblNombre.Location = new Point(10, 46);
+        lblNombre.Text = "Nombre: *";
+        lblNombre.Font = new Font("Segoe UI", 9F);
+
+        txtNombre.Location = new Point(10, 64);
+        txtNombre.Size = new Size(272, 28);
+        txtNombre.MaxLength = 200;
+
+        // — Precio unitario —
+        lblPrecio.AutoSize = true;
+        lblPrecio.Location = new Point(10, 102);
+        lblPrecio.Text = "Precio unitario: *";
+        lblPrecio.Font = new Font("Segoe UI", 9F);
+
+        txtPrecio.Location = new Point(10, 120);
+        txtPrecio.Size = new Size(128, 28);
+
+        // — Stock —
+        lblStock.AutoSize = true;
+        lblStock.Location = new Point(152, 102);
+        lblStock.Text = "Stock: *";
+        lblStock.Font = new Font("Segoe UI", 9F);
+
+        txtStock.Location = new Point(152, 120);
+        txtStock.Size = new Size(130, 28);
+
+        // — Categoría —
+        lblCategoria.AutoSize = true;
+        lblCategoria.Location = new Point(10, 160);
+        lblCategoria.Text = "Categoría:";
+        lblCategoria.Font = new Font("Segoe UI", 9F);
+
+        cmbCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
+        cmbCategoria.FormattingEnabled = true;
+        cmbCategoria.Location = new Point(10, 178);
+        cmbCategoria.Size = new Size(272, 28);
+
+        // — Descripción —
+        lblDescripcion.AutoSize = true;
+        lblDescripcion.Location = new Point(10, 218);
+        lblDescripcion.Text = "Descripción:";
+        lblDescripcion.Font = new Font("Segoe UI", 9F);
+
+        txtDescripcion.Location = new Point(10, 236);
+        txtDescripcion.Size = new Size(272, 64);
+        txtDescripcion.Multiline = true;
+        txtDescripcion.MaxLength = 500;
+        txtDescripcion.ScrollBars = ScrollBars.Vertical;
+
+        // — Activo —
+        chkActivo.AutoSize = true;
+        chkActivo.Location = new Point(10, 312);
+        chkActivo.Text = "Producto activo";
+        chkActivo.Checked = true;
+        chkActivo.Font = new Font("Segoe UI", 9F);
+
+        grpDatos.Controls.AddRange(new Control[]
+        {
+            lblNombre,    txtNombre,
+            lblPrecio,    txtPrecio,
+            lblStock,     txtStock,
+            lblCategoria, cmbCategoria,
+            lblDescripcion, txtDescripcion,
+            chkActivo
+        });
+
+        // ── Panel botones ─────────────────────────────────────────────────────
+        pnlBotones.Dock = DockStyle.Top;
+        pnlBotones.Height = 185;
+        pnlBotones.Padding = new Padding(0, 8, 0, 0);
+
+        Btn(btnNuevo, "➕  Nuevo", Color.FromArgb(30, 115, 190), new Point(0, 8));
+        Btn(btnGuardar, "💾  Guardar", Color.FromArgb(39, 174, 96), new Point(0, 53));
+        Btn(btnEliminar, "🗑  Eliminar", Color.FromArgb(231, 76, 60), new Point(0, 98));
+        Btn(btnCancelar, "✖  Cancelar", Color.FromArgb(127, 140, 141), new Point(0, 143));
+
+        btnNuevo.Click += btnNuevo_Click;
+        btnGuardar.Click += btnGuardar_Click;
+        btnEliminar.Click += btnEliminar_Click;
+        btnCancelar.Click += btnCancelar_Click;
+
+        pnlBotones.Controls.AddRange(new Control[]
+            { btnNuevo, btnGuardar, btnEliminar, btnCancelar });
+
+        // ── Ensamblado ────────────────────────────────────────────────────────
+        pnlFormulario.Controls.Add(pnlBotones);
+        pnlFormulario.Controls.Add(grpDatos);
+        pnlFormulario.Controls.Add(lblModo);
+
+        Controls.Add(dgvProductos);   // Fill (debe agregarse antes que Right)
+        Controls.Add(pnlFormulario);
+        Controls.Add(pnlBusqueda);
+        Controls.Add(pnlSuperior);
+
+        ResumeLayout(false);
+        PerformLayout();
+    }
+
+    private static void Btn(Button b, string texto, Color color, Point loc)
+    {
+        b.BackColor = color;
+        b.FlatStyle = FlatStyle.Flat;
+        b.FlatAppearance.BorderSize = 0;
+        b.ForeColor = Color.White;
+        b.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+        b.Location = loc;
+        b.Size = new Size(282, 38);
+        b.Text = texto;
+        b.Cursor = Cursors.Hand;
+        b.UseVisualStyleBackColor = false;
+    }
+
+    #endregion
+
+    // ── Declaraciones ─────────────────────────────────────────────────────────
+    private Panel pnlSuperior;
+    private Label lblTitulo;
+    private Panel pnlBusqueda;
+    private Label lblBuscar;
+    private TextBox txtBuscar;
+    private DataGridView dgvProductos;
+    private Panel pnlFormulario;
+    private GroupBox grpDatos;
+    private Label lblModo;
+    private Label lblNombre;
+    private TextBox txtNombre;
+    private Label lblPrecio;
+    private TextBox txtPrecio;
+    private Label lblStock;
+    private TextBox txtStock;
+    private Label lblDescripcion;
+    private TextBox txtDescripcion;
+    private Label lblCategoria;
+    private ComboBox cmbCategoria;
+    private CheckBox chkActivo;
+    private Panel pnlBotones;
+    private Button btnNuevo;
+    private Button btnGuardar;
+    private Button btnEliminar;
+    private Button btnCancelar;
 }

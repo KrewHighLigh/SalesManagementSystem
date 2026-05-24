@@ -1,14 +1,11 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SalesMgrSystem.Data.Context;
-using SalesMgrSystem.UI;
+using SalesMgrSystem.Data.Services;
+using SalesMgrSystem.Ui.Forms;
+using SalesMgrSystem.UI.Forms;
 
-*Pon esto en el program:* using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using SalesMgrSystem.Data.Context;
-using SalesMgrSystem.Ui.Services;
-using SalesMgrSystem.Ui;
-
-namespace SalesMgrSystem.Ui;
+namespace SalesMgrSystem.UI;
 
 internal static class Program
 {
@@ -23,7 +20,7 @@ internal static class Program
         ConfigureServices(services);
         ServiceProvider = services.BuildServiceProvider();
 
-        Application.Run(new MainMenu());
+        Application.Run(ServiceProvider.GetRequiredService<MainForm>());
     }
 
     private static void ConfigureServices(ServiceCollection services)
@@ -31,7 +28,6 @@ internal static class Program
         var connectionString = System.Configuration.ConfigurationManager
             .ConnectionStrings["SalesMgrConnection"].ConnectionString;
 
-        // Transient: cada GetRequiredService<XService>() recibe un DbContext nuevo
         services.AddDbContext<SalesMgrContext>(options =>
             options.UseSqlServer(
                 connectionString,
@@ -41,6 +37,16 @@ internal static class Program
                     errorNumbersToAdd: null)),
             ServiceLifetime.Transient);
 
+        // Forms
+        services.AddTransient<MainForm>();
+        services.AddTransient<CategoryForm>();
+        services.AddTransient<CustomerForm>();
+        services.AddTransient<ProductForm>();
+        services.AddTransient<OrderForm>();
+        services.AddTransient<PaymentForm>();
+        services.AddTransient<UserForm>();
+
+        // Services
         services.AddTransient<CategoryService>();
         services.AddTransient<CustomerService>();
         services.AddTransient<OrderService>();
