@@ -1,21 +1,20 @@
-using Microsoft.EntityFrameworkCore;
-using SalesMgrSystem.Data.Context;
+using Microsoft.Extensions.DependencyInjection;
 using SalesMgrSystem.Data.Models;
-using SalesMgrSystem.UI.Services;
+using SalesMgrSystem.Data.Services;
 
 namespace SalesMgrSystem.UI
 {
     public partial class CategoryForm : Form
     {
-        private readonly CategoryService _service;
-        private int  _selectedId = 0;
-        private bool _editando   = false;
+        private static CategoryService Servicio() =>
+            Program.ServiceProvider.GetRequiredService<CategoryService>();
+
+        private int _selectedId = 0;
+        private bool _editando = false;
 
         public CategoryForm()
         {
             InitializeComponent();
-
-            _service = new CategoryService(new SalesMgrContext());
 
             _ = CargarCategorias();
         }
@@ -28,7 +27,7 @@ namespace SalesMgrSystem.UI
                 SetCargando(true);
                 string filtro = txtBuscar.Text.Trim().ToLower();
 
-                var lista = await _service.GetListConRelaciones(
+                var lista = await Servicio().GetListConRelaciones(
                     c => filtro == string.Empty
                       || c.CategoryName.ToLower().Contains(filtro)
                       || (c.Description != null && c.Description.ToLower().Contains(filtro)));
@@ -74,7 +73,7 @@ namespace SalesMgrSystem.UI
                     CreatedDate  = _editando ? null : DateTime.Now
                 };
 
-                bool ok = await _service.Guardar(entidad);
+                bool ok = await Servicio().Guardar(entidad);
                 lblEstado.Text = ok
                     ? (_editando ? "✔  Categoría actualizada." : "✔  Categoría guardada.")
                     : "✘  No se pudo guardar.";
@@ -108,7 +107,7 @@ namespace SalesMgrSystem.UI
             try
             {
                 SetCargando(true);
-                bool ok = await _service.Eliminar(_selectedId);
+                bool ok = await Servicio().Eliminar(_selectedId);
                 lblEstado.Text      = ok ? "✔  Categoría eliminada." : "✘  No se encontró.";
                 lblEstado.ForeColor = ok
                     ? Color.FromArgb(166, 227, 161)
@@ -139,7 +138,7 @@ namespace SalesMgrSystem.UI
             if (dgvCategorias.SelectedRows.Count == 0) return;
             if (dgvCategorias.SelectedRows[0].Cells["CategoryId"].Value is not int id) return;
 
-            var cat = await _service.Buscar(id);
+            var cat = await Servicio().Buscar(id);
             if (cat == null) return;
 
             _selectedId        = cat.CategoryId;

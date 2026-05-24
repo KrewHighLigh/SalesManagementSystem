@@ -1,6 +1,6 @@
 ﻿namespace SalesMgrSystem.Ui.Forms;
 
-partial class ProductosForm
+partial class ProductForm
 {
     private System.ComponentModel.IContainer components = null;
 
@@ -49,7 +49,7 @@ partial class ProductosForm
         MinimumSize = new Size(900, 600);
         StartPosition = FormStartPosition.CenterScreen;
         Text = "Gestión de Productos";
-        Load += ProductosForm_Load;   // ← nombre correcto del evento
+        Load += ProductForm_Load;
 
         // ── Panel superior ────────────────────────────────────────────────────
         pnlSuperior.BackColor = Color.FromArgb(30, 115, 190);

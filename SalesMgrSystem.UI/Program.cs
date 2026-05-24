@@ -3,7 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using SalesMgrSystem.Data.Context;
 using SalesMgrSystem.Data.Services;
 using SalesMgrSystem.Ui.Forms;
-using SalesMgrSystem.UI.Forms;
 
 namespace SalesMgrSystem.UI;
 

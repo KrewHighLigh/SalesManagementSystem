@@ -1,31 +1,28 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SalesMgrSystem.Data.Models;
-using SalesMgrSystem.Ui.Services;
+using SalesMgrSystem.Data.Services;
 using SalesMgrSystem.UI;
 using System.Linq.Expressions;
 
 namespace SalesMgrSystem.Ui.Forms;
 
-public partial class ProductosForm : Form
+public partial class ProductForm : Form
 {
-    // ─── Estado interno ───────────────────────────────────────────────────────
     private int _productIdSeleccionado = 0;
     private bool _ocupado = false;
 
-    // ─── Helpers
     private static ProductService NuevoProductService() =>
         Program.ServiceProvider.GetRequiredService<ProductService>();
     private static CategoryService NuevoCategoryService() =>
         Program.ServiceProvider.GetRequiredService<CategoryService>();
 
-
-    public ProductosForm()
+    public ProductForm()
     {
         InitializeComponent();
     }
 
 
-    private async void ProductosForm_Load(object sender, EventArgs e)
+    private async void ProductForm_Load(object sender, EventArgs e)
     {
         // Evitamos que SelectionChanged dispare operaciones durante la carga
         dgvProductos.SelectionChanged -= dgvProductos_SelectionChanged;
@@ -139,7 +136,7 @@ public partial class ProductosForm : Form
         await EjecutarConGuard(() => CargarProductos(txtBuscar.Text.Trim()));
     }
 
-    private async void dgvProductos_SelectionChanged(object sender, EventArgs e)
+    private async void dgvProductos_SelectionChanged(object? sender, EventArgs e)
     {
         if (_ocupado || dgvProductos.CurrentRow is null) return;
 

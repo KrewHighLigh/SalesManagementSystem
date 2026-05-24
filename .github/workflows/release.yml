@@ -24,7 +24,7 @@ jobs:
 
       - name: Publicar proyecto Windows Forms
         # Al igual que antes, ajusta la ruta a tu .csproj
-        run: dotnet publish "AdventureAdmin.Ui/AdventureAdmin.Ui.csproj" -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o ./publish_output
+        run: dotnet publish "SalesMgrSystem.UI/SalesMgrSystem.UI.csproj" -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o ./publish_output
 
       - name: Comprimir artefactos de publicación
         run: Compress-Archive -Path ./publish_output/* -DestinationPath ./WinFormsApp-${{ github.ref_name }}.zip
