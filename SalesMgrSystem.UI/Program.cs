@@ -1,17 +1,52 @@
-namespace SalesMgrSystem.UI
+using Microsoft.Extensions.DependencyInjection;
+using SalesMgrSystem.Data.Context;
+using SalesMgrSystem.UI;
+
+*Pon esto en el program:* using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using SalesMgrSystem.Data.Context;
+using SalesMgrSystem.Ui.Services;
+using SalesMgrSystem.Ui;
+
+namespace SalesMgrSystem.Ui;
+
+internal static class Program
 {
-    internal static class Program
+    public static ServiceProvider ServiceProvider { get; private set; } = null!;
+
+    [STAThread]
+    static void Main()
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm());
-        }
+        ApplicationConfiguration.Initialize();
+
+        var services = new ServiceCollection();
+        ConfigureServices(services);
+        ServiceProvider = services.BuildServiceProvider();
+
+        Application.Run(new MainMenu());
+    }
+
+    private static void ConfigureServices(ServiceCollection services)
+    {
+        var connectionString = System.Configuration.ConfigurationManager
+            .ConnectionStrings["SalesMgrConnection"].ConnectionString;
+
+        // Transient: cada GetRequiredService<XService>() recibe un DbContext nuevo
+        services.AddDbContext<SalesMgrContext>(options =>
+            options.UseSqlServer(
+                connectionString,
+                sql => sql.EnableRetryOnFailure(
+                    maxRetryCount: 5,
+                    maxRetryDelay: TimeSpan.FromSeconds(10),
+                    errorNumbersToAdd: null)),
+            ServiceLifetime.Transient);
+
+        services.AddTransient<CategoryService>();
+        services.AddTransient<CustomerService>();
+        services.AddTransient<OrderService>();
+        services.AddTransient<OrderDetailService>();
+        services.AddTransient<PaymentService>();
+        services.AddTransient<ProductService>();
+        services.AddTransient<UserService>();
     }
 }

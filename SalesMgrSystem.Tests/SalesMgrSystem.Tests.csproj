@@ -17,13 +17,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\SalesMgrSystem.Data\SalesMgrSystem.Data.csproj" />
-	  <ProjectReference Include="..\SalesMgrSystem.UI\SalesMgrSystem.UI.csproj" />
+		<ProjectReference Include="..\SalesMgrSystem.Data\SalesMgrSystem.Data.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Using Include="Xunit" />
 	</ItemGroup>
-
 
 </Project>
