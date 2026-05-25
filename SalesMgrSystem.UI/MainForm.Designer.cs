@@ -2,117 +2,100 @@
 {
     partial class MainForm
     {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
+            pnlHeader = new Panel();
+            lblTitle = new Label();
+            lblSubtitle = new Label();
+            pnlFooter = new Panel();
+            lblFooter = new Label();
+            headerAccent = new Panel();
+            footerBorder = new Panel();
+            pnlHeader.SuspendLayout();
+            pnlFooter.SuspendLayout();
             SuspendLayout();
-            // 
-            // button1
-            // 
-            button1.Location = new Point(128, 227);
-            button1.Name = "button1";
-            button1.Size = new Size(172, 143);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(692, 227);
-            button2.Name = "button2";
-            button2.Size = new Size(172, 143);
-            button2.TabIndex = 1;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(128, 547);
-            button3.Name = "button3";
-            button3.Size = new Size(172, 143);
-            button3.TabIndex = 0;
-            button3.Text = "button1";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(1244, 227);
-            button4.Name = "button4";
-            button4.Size = new Size(172, 143);
-            button4.TabIndex = 1;
-            button4.Text = "button2";
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(692, 547);
-            button5.Name = "button5";
-            button5.Size = new Size(172, 143);
-            button5.TabIndex = 2;
-            button5.Text = "button5";
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            button6.Location = new Point(1244, 547);
-            button6.Name = "button6";
-            button6.Size = new Size(172, 143);
-            button6.TabIndex = 3;
-            button6.Text = "button6";
-            button6.UseVisualStyleBackColor = true;
-            // 
+
+            // pnlHeader
+            pnlHeader.BackColor = Color.FromArgb(22, 27, 34);
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Height = 100;
+            pnlHeader.Padding = new Padding(48, 0, 48, 0);
+
+            lblTitle.AutoSize = false;
+            lblTitle.Location = new Point(48, 22);
+            lblTitle.Size = new Size(700, 46);
+            lblTitle.Font = new Font("Segoe UI", 26F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.FromArgb(240, 246, 252);
+            lblTitle.Text = "Sales Management System";
+            lblTitle.TextAlign = ContentAlignment.MiddleLeft;
+
+            lblSubtitle.AutoSize = false;
+            lblSubtitle.Location = new Point(48, 68);
+            lblSubtitle.Size = new Size(700, 24);
+            lblSubtitle.Font = new Font("Segoe UI", 12F);
+            lblSubtitle.ForeColor = Color.FromArgb(139, 148, 158);
+            lblSubtitle.Text = "Panel de Control — Gestión de Ventas";
+            lblSubtitle.TextAlign = ContentAlignment.MiddleLeft;
+
+            headerAccent.BackColor = Color.FromArgb(88, 166, 255);
+            headerAccent.Dock = DockStyle.Bottom;
+            headerAccent.Height = 2;
+
+            pnlHeader.Controls.Add(lblSubtitle);
+            pnlHeader.Controls.Add(lblTitle);
+            pnlHeader.Controls.Add(headerAccent);
+
+            // pnlFooter
+            pnlFooter.BackColor = Color.FromArgb(22, 27, 34);
+            pnlFooter.Dock = DockStyle.Bottom;
+            pnlFooter.Height = 36;
+
+            footerBorder.BackColor = Color.FromArgb(33, 38, 45);
+            footerBorder.Dock = DockStyle.Top;
+            footerBorder.Height = 1;
+
+            lblFooter.AutoSize = false;
+            lblFooter.Dock = DockStyle.Fill;
+            lblFooter.Font = new Font("Segoe UI", 9F);
+            lblFooter.ForeColor = Color.FromArgb(139, 148, 158);
+            lblFooter.Text = "v1.0  ·  SalesMgrSystem  ·  Sales Management System";
+            lblFooter.TextAlign = ContentAlignment.MiddleCenter;
+
+            pnlFooter.Controls.Add(lblFooter);
+            pnlFooter.Controls.Add(footerBorder);
+
             // MainForm
-            // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1555, 836);
-            Controls.Add(button6);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button2);
-            Controls.Add(button3);
-            Controls.Add(button1);
-            Name = "MainForm";
-            Text = "Form1";
+            BackColor = Color.FromArgb(13, 17, 23);
+            ClientSize = new Size(1100, 720);
+            MinimumSize = new Size(900, 620);
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Sales Management System";
+
+            Controls.Add(pnlHeader);
+            Controls.Add(pnlFooter);
+
+            pnlHeader.ResumeLayout(false);
+            pnlFooter.ResumeLayout(false);
             ResumeLayout(false);
         }
 
-        #endregion
-
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Button button5;
-        private Button button6;
+        private Panel pnlHeader;
+        private Label lblTitle;
+        private Label lblSubtitle;
+        private Panel headerAccent;
+        private Panel pnlFooter;
+        private Label lblFooter;
+        private Panel footerBorder;
     }
 }

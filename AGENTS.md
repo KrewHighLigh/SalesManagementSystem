@@ -45,6 +45,14 @@ dotnet test -c Release --no-build --verbosity normal --logger "trx"
 | Clase `ProductosForm` no coincidía con nombre de archivo `ProductForm.cs` | Renombrada a `ProductForm` |
 | Connection string hardcodeada en `OnConfiguring()` sin check | Agregado `if (!optionsBuilder.IsConfigured)` |
 | Faltaba `App.config` con `SalesMgrConnection` | Creado |
+| `UserService.cs`: `Existe()` private, sin `AsNoTracking()` | Estandarizado como los demás servicios |
+| 7 forms vacíos (Customer, Order, OrderDetail, Payment, User, VwProductSale, VwSalesSummary) | Implementados CRUD completo |
+| `MainForm.cs` sin navegación (6 botones genéricos) | Rediseñado con dashboard a 9 módulos |
+| Faltaban registros DI para varios forms/services | Completados en `Program.cs` |
+| Directorio `Forms/` vacío | Eliminado |
+| `MainForm.cs` eventos `Load` con `_ =` en 4 forms (Customer, Order, OrderDetail, Payment) | Movido a evento `Load` + suscripción en Designer |
+| `VwSalesSummaryForm.cs` usaba field `_service` inconsistente | Cambiado a `static Servicio()` helper |
+| `MainForm.cs` botones planos → diseño oscuro premium | Rediseñado con cards Panel, stripe superior, hover efecto |
 
 ## Scaffolding (referencia)
 
@@ -57,3 +65,6 @@ Scaffold-DbContext "Data Source=.\SQLEXPRESS;Initial Catalog=SalesManagementDB;I
 - Servicios: constructor primario `class FooService(SalesMgrContext ctx) : IService<Foo, int>`
 - Métodos en español: `Buscar`, `Guardar`, `Eliminar`, `Existe`, `Modificar`
 - Forms: `async void` para eventos, `async Task` para métodos internos
+- Todas las Forms acceden servicios via `static FooService Servicio() => Program.ServiceProvider.GetRequiredService<FooService>()`
+- **NUNCA** `_ = CargarXxx()` en el constructor — usar evento `Load` para carga asíncrona
+- **NUNCA** campos `readonly` para servicios — usar método `static` helper

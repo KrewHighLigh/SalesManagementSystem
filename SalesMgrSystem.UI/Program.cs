@@ -13,13 +13,20 @@ internal static class Program
     [STAThread]
     static void Main()
     {
-        ApplicationConfiguration.Initialize();
+        try
+        {
+            ApplicationConfiguration.Initialize();
 
-        var services = new ServiceCollection();
-        ConfigureServices(services);
-        ServiceProvider = services.BuildServiceProvider();
+            var services = new ServiceCollection();
+            ConfigureServices(services);
+            ServiceProvider = services.BuildServiceProvider();
 
-        Application.Run(ServiceProvider.GetRequiredService<MainForm>());
+            Application.Run(ServiceProvider.GetRequiredService<MainForm>());
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.ToString(), "Error al iniciar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 
     private static void ConfigureServices(ServiceCollection services)
@@ -42,8 +49,11 @@ internal static class Program
         services.AddTransient<CustomerForm>();
         services.AddTransient<ProductForm>();
         services.AddTransient<OrderForm>();
+        services.AddTransient<OrderDetailForm>();
         services.AddTransient<PaymentForm>();
         services.AddTransient<UserForm>();
+        services.AddTransient<VwProductSaleForm>();
+        services.AddTransient<VwSalesSummaryForm>();
 
         // Services
         services.AddTransient<CategoryService>();
@@ -53,5 +63,7 @@ internal static class Program
         services.AddTransient<PaymentService>();
         services.AddTransient<ProductService>();
         services.AddTransient<UserService>();
+        services.AddTransient<VwProductSaleService>();
+        services.AddTransient<VwSalesSummaryService>();
     }
 }
