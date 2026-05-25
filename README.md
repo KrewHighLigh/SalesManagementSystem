@@ -198,4 +198,6 @@ Scaffold-DbContext "Data Source=.\SQLEXPRESS;Initial Catalog=SalesManagementDB;I
 
 ## 📄 Licencia
 
-Distribuido bajo licencia MIT. Ver `LICENSE.txt`.
+Nombre: Emmanuel Emilio Comery Valdez
+
+Matricula: 100704991
