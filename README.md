@@ -196,8 +196,6 @@ Scaffold-DbContext "Data Source=.\SQLEXPRESS;Initial Catalog=SalesManagementDB;I
 
 ---
 
-## 📄 Licencia
-
 Nombre: Emmanuel Emilio Comery Valdez
 
 Matricula: 100704991
